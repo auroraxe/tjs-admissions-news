@@ -1,22 +1,49 @@
 const fs = require("fs");
 
 const feeds = [
+
   {
-    category: "Admissions",
-    query: '"graduate admissions" OR "college admissions" when:7d'
+    category: "Music Admissions",
+    query:
+      '("Juilliard" OR "Curtis Institute of Music" OR "Eastman School of Music" OR "New England Conservatory" OR "Manhattan School of Music" OR "Colburn School" OR "Yale School of Music") (admissions OR audition OR prescreening OR application) when:30d'
   },
+
   {
-    category: "International",
-    query: '"international students" visa OR immigration when:7d'
+    category: "Music Admissions",
+    query:
+      '("University of Michigan School of Music Theatre & Dance" OR "Butler School of Music" OR "Jacobs School of Music" OR "Peabody Institute" OR "USC Thornton School of Music" OR "Frost School of Music" OR "Shepherd School of Music") (admissions OR audition OR prescreening OR application) when:30d'
   },
+
   {
-    category: "Testing",
-    query: 'TOEFL OR IELTS when:7d'
+    category: "Music Admissions",
+    query:
+      '("Mannes School of Music" OR "College-Conservatory of Music" OR "Carnegie Mellon School of Music" OR "Oberlin Conservatory" OR "Boston Conservatory" OR "San Francisco Conservatory of Music") (admissions OR audition OR prescreening OR application) when:30d'
   },
+
   {
-    category: "Music Schools",
-    query: '"music school" admissions OR "conservatory admissions" when:30d'
+    category: "International Music",
+    query:
+      '("Yong Siew Toh Conservatory of Music" OR "Mahidol University College of Music") (admissions OR audition OR application OR international students) when:60d'
+  },
+
+  {
+    category: "International / Visa",
+    query:
+      '("F-1 visa" OR "student visa" OR SEVP OR "international students") ("United States" OR university) when:14d'
+  },
+
+  {
+    category: "English Proficiency",
+    query:
+      '(TOEFL OR IELTS) ("university admissions" OR "international students" OR "English proficiency") when:30d'
+  },
+
+  {
+    category: "Graduate Admissions",
+    query:
+      '("graduate admissions" OR "international admissions") ("higher education" OR university) when:14d'
   }
+
 ];
 
 
