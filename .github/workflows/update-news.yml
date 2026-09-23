@@ -1,0 +1,42 @@
+name: Update Admissions News
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # Runs every day at 7:00 AM China Standard Time
+    # GitHub cron uses UTC, so 23:00 UTC = 07:00 China the next day
+    - cron: "0 23 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Update admissions news
+        run: node update-news.js
+
+      - name: Commit updated news
+        run: |
+          git config user.name "TJS Admissions News Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          if git diff --quiet news.json; then
+            echo "No changes to news.json"
+            exit 0
+          fi
+
+          git add news.json
+          git commit -m "Update admissions news"
+          git push
